@@ -12,7 +12,7 @@
   height: 2em;
 }
 
-#open-on-genius-div {
+#open-on-genius-container {
   display: flex;
   justify-content: start;
   gap: 6px;
@@ -27,7 +27,7 @@
   cursor: pointer;
 }
 
-#open-on-genius-div:hover {
+#open-on-genius-container:hover {
   min-width: 160px;
 }
 
@@ -37,7 +37,7 @@
   align-items: center;
   color: black;
   font-size: 0.85em;
-  font-family: "Programme";
+  font-family: "Programme", sans-serif;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -58,7 +58,7 @@ h1.title.style-scope.ytd-video-primary-info-renderer {
 }
 
 .spinning {
-  animation: spin 1s infinite ease-in;
+  animation: spin 0.37s infinite ease-in-out;
 }
 
 @keyframes shake {

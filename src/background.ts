@@ -57,9 +57,10 @@ async function findOnGenius(sanitizedName: string, sender: MessageSender) {
     const songURL: string = json?.response?.hits[0]?.result?.url
 
     if (songURL) {
+        console.log(sender)
         await Browser.tabs.create({url: songURL})
-        await Browser.tabs.sendMessage(sender.frameId, { stopSpin: true })
+        await Browser.tabs.sendMessage(sender.tab.id, { stopSpin: true })
     } else {
-        await Browser.tabs.sendMessage(sender.frameId, { shake: true })
+        await Browser.tabs.sendMessage(sender.tab.id, { shake: true })
     }
 }
