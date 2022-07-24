@@ -1,0 +1,25 @@
+{
+  "name": "productivity-booster",
+  "version": "0.1.0",
+  "description": "Adds a handy button to open Genius lyrics to songs on YouTube.",
+  "repository": "https://github.com/stereo8/open-on-genius-ts",
+  "author": "Vid Plavšić <plavsic.vid@gmail.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "parcel watch manifest.json --host localhost",
+    "build": "parcel build manifest.json"
+  },
+  "dependencies": {
+    "@types/webextension-polyfill": "^0.9.0",
+    "typescript": "^4.7.4",
+    "web-ext": "^7.1.1",
+    "webextension-polyfill": "^0.9.0"
+  },
+  "devDependencies": {
+    "@parcel/config-webextension": "^2.6.2",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
+    "parcel": "latest"
+  }
+}

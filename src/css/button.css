@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "Programme";
+  src: url(https://assets.genius.com/fonts/programme_normal.woff2)
+      format("woff2"),
+    url(https://assets.genius.com/fonts/programme_normal.woff?) format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+#open-on-genius-button {
+  width: 2em;
+  height: 2em;
+}
+
+#open-on-genius-div {
+  display: flex;
+  justify-content: start;
+  gap: 6px;
+  margin-right: 2px;
+  border-radius: 30px;
+  background-color: #ffff64;
+  min-width: 2em;
+  max-width: 2em;
+  height: 2em;
+  overflow: hidden;
+  transition: min-width 0.25s;
+  cursor: pointer;
+}
+
+#open-on-genius-div:hover {
+  min-width: 160px;
+}
+
+#open-on-genius-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 0.85em;
+  font-family: "Programme";
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#categoryPill {
+  display: none;
+}
+
+h1.title.style-scope.ytd-video-primary-info-renderer {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shaking {
+  animation: shake 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.spinning {
+  animation: spin 1s infinite ease-in;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

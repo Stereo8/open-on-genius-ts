@@ -1,0 +1,10 @@
+{
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "lib": ["esnext", "dom"],
+    "target": "ES2015",
+    "outDir": "lib",
+    "declaration": false
+  }
+}

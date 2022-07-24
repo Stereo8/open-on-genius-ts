@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Open on Genius",
+  "version": "0.1",
+  "description": "Adds a handy button to open Genius lyrics to songs on YouTube.",
+  "icons": {},
+
+  "background": {
+    "scripts": ["src/background.ts"],
+    "persistent": true
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/watch*"],
+      "js": ["src/content.ts"],
+      "css": ["src/css/button.css"]
+    }
+  ],
+
+  "web_accessible_resources": ["images/*.png"],
+
+  "permissions": ["tabs", "*://www.youtube.com/watch*", "*://api.genius.com/*"]
+}
