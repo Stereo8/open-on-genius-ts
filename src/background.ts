@@ -1,6 +1,7 @@
-import {Runtime} from 'webextension-polyfill'
-import MessageSender = Runtime.MessageSender;
+import { Runtime } from 'webextension-polyfill'
 import * as Browser from 'webextension-polyfill'
+import MessageSender = Runtime.MessageSender
+import { BackgroundToPageMessage } from './interfaces'
 
 console.log('hi')
 
@@ -56,11 +57,10 @@ async function findOnGenius(sanitizedName: string, sender: MessageSender) {
 
   const songURL: string = json?.response?.hits[0]?.result?.url
 
-  if (songURL) {
-    console.log(sender)
-    await Browser.tabs.create({url: songURL})
-    await Browser.tabs.sendMessage(sender.tab.id, { stopSpin: true })
-  } else {
-    await Browser.tabs.sendMessage(sender.tab.id, { shake: true })
+  const message: BackgroundToPageMessage = {
+    stopSpin: !!songURL,
+    shake: !songURL,
   }
+
+  await Browser.tabs.sendMessage(sender.tab.id, message)
 }

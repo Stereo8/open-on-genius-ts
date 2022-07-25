@@ -1,4 +1,5 @@
 import * as Browser from 'webextension-polyfill'
+import { BackgroundToPageMessage, PageToBackgroundMessage } from './interfaces'
 
 let titleElement = null
 let songTitle = ''
@@ -15,10 +16,12 @@ async function onButtonClick() {
   ) {
     artistName = document.querySelector('ytd-channel-name a').innerHTML
   }
-  await Browser.runtime.sendMessage({
+  const message: PageToBackgroundMessage = {
     songTitle,
     ...(artistName && { artistName }),
-  })
+  }
+
+  await Browser.runtime.sendMessage(message)
 }
 
 async function mountButton() {
@@ -40,16 +43,17 @@ async function mountButton() {
   titleElement.parentNode.appendChild(container)
 }
 
-function messageListener(message) {
+function messageListener(message: BackgroundToPageMessage) {
   console.log(message)
-  if (message?.shake) {
+  if (message.shake) {
     const div = document.querySelector('#open-on-genius-container')
     div.classList.add('shaking')
     setTimeout(() => {
       div.classList.remove('shaking')
       button.classList.remove('spinning')
     }, 1000)
-  } else if (message?.stopSpin) {
+  }
+  if (message.stopSpin) {
     button.classList.remove('spinning')
   }
 }
