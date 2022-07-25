@@ -3,6 +3,7 @@ import * as Browser from 'webextension-polyfill'
 let titleElement = null
 let songTitle = ''
 let button: HTMLImageElement = null
+let loadInterval = null
 
 async function onButtonClick() {
   button.classList.add('spinning')
@@ -54,11 +55,14 @@ function messageListener(message) {
 }
 
 // Waits for SPA to render to get song title
-const intervalID = setInterval(async () => {
+async function findTitle() {
   titleElement = document.querySelector('h1.title > yt-formatted-string')
   songTitle = titleElement?.innerHTML
 
   if (songTitle) {
+    clearInterval(loadInterval)
+    await mountButton()
+
     // Looks for changes to the song title that happen on SPA navigation
     new MutationObserver(() => {
       songTitle = titleElement?.innerHTML
@@ -66,12 +70,22 @@ const intervalID = setInterval(async () => {
       subtree: true,
       childList: true,
     })
-
-    console.log(songTitle)
-    await mountButton()
-
-    clearInterval(intervalID)
   }
-}, 200)
+}
+console.log('im on the page bro!')
+// Looks for SPA navigation and attaches button if transitioning to video page
+new MutationObserver(() => {
+  const videoPage = window.location.href.startsWith(
+    'https://www.youtube.com/watch?'
+  )
+  // We do not want to have more than one button
+  if (videoPage && !button) {
+    loadInterval = setInterval(findTitle)
+  }
+}).observe(document.querySelector('title'), {
+  subtree: true,
+  childList: true,
+  characterData: true,
+})
 
 Browser.runtime.onMessage.addListener(messageListener)
