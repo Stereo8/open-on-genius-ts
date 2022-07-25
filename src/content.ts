@@ -22,7 +22,7 @@ async function onButtonClick() {
 
 async function mountButton() {
   const container = document.createElement('div')
-  container.id = 'open-on-genius-div'
+  container.id = 'open-on-genius-container';
 
   button = document.createElement('img')
   button.src = Browser.runtime.getURL('images/genius.png')
