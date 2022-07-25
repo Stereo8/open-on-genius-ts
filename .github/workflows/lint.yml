@@ -64,6 +64,7 @@ jobs:
         with:
           tag: "latest"
           message: "Latest release"
+          force_push_tag: true
 
       - name: Release
         uses: ncipollo/release-action@v1
