@@ -69,7 +69,7 @@ jobs:
       - name: Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'dist.zip'
+          artifacts: 'dist.zip.zip'
           omitBody: true
           tag: latest
           artifactContentType: application/zip
