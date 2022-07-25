@@ -1,7 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Lint+
+name: Lint + Build
 
 on:
   push:
@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -21,14 +20,36 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: npm ci
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
 
-      - name: Run linters
+      - name: ESLint
         uses: icrawl/action-eslint@v1
 
-    
+      - name: Build
+      - run: npm run build
+
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r dist.zip dist
+      - uses: actions/upload-artifact@v2
+        with:
+          name: vendor.zip
+
+
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'vendor.zip'
+          omitBody: true
+          artifactContentType: application/zip
