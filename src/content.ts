@@ -39,6 +39,21 @@ async function mountButton() {
   titleElement.parentNode.appendChild(container)
 }
 
+function messageListener(message) {
+  console.log(message)
+  if (message?.shake) {
+    const div = document.querySelector('#open-on-genius-container')
+    div.classList.add('shaking')
+    setTimeout(() => {
+      div.classList.remove('shaking')
+      button.classList.remove('spinning')
+    }, 1000)
+  } else if (message?.stopSpin) {
+    button.classList.remove('spinning')
+  }
+}
+
+// Waits for SPA to render to get song title
 const intervalID = setInterval(async () => {
   titleElement = document.querySelector('h1.title > yt-formatted-string')
   songTitle = titleElement?.innerHTML
@@ -59,16 +74,4 @@ const intervalID = setInterval(async () => {
   }
 }, 200)
 
-Browser.runtime.onMessage.addListener((message) => {
-  console.log(message)
-  if (message?.shake) {
-    const div = document.querySelector('#open-on-genius-container')
-    div.classList.add('shaking')
-    setTimeout(() => {
-      div.classList.remove('shaking')
-      button.classList.remove('spinning')
-    }, 1000)
-  } else if (message?.stopSpin) {
-    button.classList.remove('spinning')
-  }
-})
+Browser.runtime.onMessage.addListener(messageListener)
