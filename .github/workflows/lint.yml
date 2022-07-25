@@ -70,4 +70,5 @@ jobs:
         with:
           artifacts: 'dist.zip'
           omitBody: true
+          tag: latest
           artifactContentType: application/zip
