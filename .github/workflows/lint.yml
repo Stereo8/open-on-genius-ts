@@ -31,15 +31,15 @@ jobs:
         uses: icrawl/action-eslint@v1
 
       - name: Build
-      - run: npm run build
+        run: npm run build
 
       - name: Zip
-      - uses: montudor/action-zip@v1
+        uses: montudor/action-zip@v1
         with:
           args: zip -qq -r dist.zip dist
 
       - name: Upload
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: vendor.zip
 
@@ -54,7 +54,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Release
-      - uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1
         with:
           artifacts: 'vendor.zip'
           omitBody: true
