@@ -56,7 +56,10 @@ async function findOnGenius(sanitizedName: string, sender: MessageSender) {
   const json = await response.json()
 
   const songURL: string = json?.response?.hits[0]?.result?.url
-  await Browser.tabs.create({ url: songURL })
+
+  if (songURL) {
+    await Browser.tabs.create({ url: songURL })
+  }
 
   const message: BackgroundToPageMessage = {
     stopSpin: !!songURL,
