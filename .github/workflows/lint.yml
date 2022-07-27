@@ -46,30 +46,3 @@ jobs:
         with:
           name: dist.zip
           path: dist.zip
-
-
-  release:
-    needs: ['build']
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-
-      - name: Create tag
-        uses: rickstaa/action-create-tag@v1
-        with:
-          tag: "latest"
-          message: "Latest release"
-          force_push_tag: true
-
-      - name: Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: 'dist.zip.zip'
-          omitBody: true
-          tag: latest
-          artifactContentType: application/zip
