@@ -16,7 +16,7 @@
   display: flex;
   justify-content: start;
   gap: 6px;
-  margin-right: 2px;
+  margin-left: 8px;
   border-radius: 30px;
   background-color: #ffff64;
   min-width: 2em;
