@@ -8,20 +8,20 @@
 }
 
 #open-on-genius-button {
-  width: 2em;
-  height: 2em;
+  width: 4em;
+  height: 4em;
 }
 
 #open-on-genius-container {
   display: flex;
   justify-content: start;
   gap: 6px;
-  margin-left: 8px;
+  margin-right: 8px;
   border-radius: 30px;
   background-color: #ffff64;
-  min-width: 2em;
-  max-width: 2em;
-  height: 2em;
+  min-width: 4em;
+  max-width: 4em;
+  height: 4em;
   overflow: hidden;
   transition: min-width 0.25s;
   cursor: pointer;
@@ -36,7 +36,7 @@
   justify-content: center;
   align-items: center;
   color: black;
-  font-size: 0.85em;
+  font-size: 1.5em;
   font-family: "Programme", sans-serif;
   overflow: hidden;
   white-space: nowrap;
@@ -46,12 +46,6 @@
   display: none;
 }
 
-h1.title.style-scope.ytd-video-primary-info-renderer {
-  display: flex;
-  gap: 12px;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .shaking {
   animation: shake 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;

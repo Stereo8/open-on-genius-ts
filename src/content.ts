@@ -41,7 +41,9 @@ async function mountButton() {
   container.appendChild(openText)
   container.onclick = onButtonClick
 
-  titleElement.parentNode.appendChild(container)
+  const menuElement = document.querySelector('#menu > ytd-menu-renderer')
+  menuElement.prepend(container)
+  // titleElement.parentNode.appendChild(container)
 }
 
 function messageListener(message: BackgroundToPageMessage) {
